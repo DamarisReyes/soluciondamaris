@@ -1,0 +1,54 @@
+PFont f;
+PImage a, b, c, ch;
+PImage[]xarray=new PImage[15];
+int z, x=2;
+void setup(){
+size(720, 540,P3D);
+a = loadImage("a.jpg"); b = loadImage("b.jpg"); ch = loadImage("choose.png");
+c = loadImage("c.png"); 
+f=createFont("Arial Narrow", 50, true);
+for (int i=1; i<xarray.length; i++) {xarray[i] = loadImage( i + ".png");}
+}
+
+void draw(){
+  background(random(255,255));
+keyPressed();
+}
+
+void keyPressed(){
+switch(keyCode) {
+  case ENTER: 
+    image(b, 0, 0);
+    int s=second();
+    if (s>15){
+    textFont(f);
+    fill(255);
+    textSize(16);
+    text("Presiona la tecla hacia abajo", width-350, height-35);}
+  break;// exit();
+  case DOWN:
+    image(ch,0,0);
+  break;
+  case LEFT: 
+    bases();
+  break;
+  default:             
+    image(a, 0, 0);
+  break;
+}
+}
+
+void bases(){
+image(c, width/6-19, height/4);
+for (int i=1; i<xarray.length; i++){
+if(i>0 && i<8){ 
+if(i==1){z=40;}if(i>1 && i<8){z=i*70;}
+image(xarray[i],z,i);
+}
+if(i>7 && i<15){
+if(i==8){z=40;}if(i>8 && i<15){ z=x*70; x=x+1;}
+image(xarray[i],z,45);
+}
+
+}
+}
